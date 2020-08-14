@@ -47,6 +47,7 @@ export class History {
   +setupListeners: Function
 
   constructor (router: Router, base: ?string) {
+    // router路由实例对象 new VueRouter()构造函数中的this
     this.router = router
     this.base = normalizeBase(base)
     // start with a route object that stands for "nowhere"

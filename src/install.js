@@ -18,6 +18,7 @@ export function install (Vue) {
     }
   }
 
+  // TAG：install第一步：mixin混入beforeCreate与destroyed
   Vue.mixin({
     beforeCreate () {
       if (isDef(this.$options.router)) {
@@ -35,6 +36,7 @@ export function install (Vue) {
     }
   })
 
+  // TAG: install第二步：Vue.prototype挂上$router和$route
   Object.defineProperty(Vue.prototype, '$router', {
     get () { return this._routerRoot._router }
   })
@@ -43,6 +45,7 @@ export function install (Vue) {
     get () { return this._routerRoot._route }
   })
 
+  // TAG: install第三步：定义全局组件router-view, router-link
   Vue.component('RouterView', View)
   Vue.component('RouterLink', Link)
 

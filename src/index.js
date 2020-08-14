@@ -44,9 +44,11 @@ export default class VueRouter {
     this.beforeHooks = []
     this.resolveHooks = []
     this.afterHooks = []
+    // TAG: 创建路由匹配对象
     this.matcher = createMatcher(options.routes || [], this)
 
     let mode = options.mode || 'hash'
+    // TAG: 开启fallback配置，不支持PushState的话 回退到hash模式
     this.fallback =
       mode === 'history' && !supportsPushState && options.fallback !== false
     if (this.fallback) {
@@ -57,6 +59,7 @@ export default class VueRouter {
     }
     this.mode = mode
 
+    // TAG: 根据mode实例化this.history
     switch (mode) {
       case 'history':
         this.history = new HTML5History(this, options.base)
